@@ -1,8 +1,20 @@
 import { cn } from "@/lib/utils"
 
-const nodes = ["Warehouse", "Fulfilment", "Carrier", "Customer"]
+const defaultNodes = ["Warehouse", "Fulfilment", "Carrier", "Customer"]
 
-export function NodeFlow({ className }: { className?: string }) {
+export function NodeFlow({
+  className,
+  steps = defaultNodes,
+  hubIndex = 1,
+}: {
+  className?: string
+  /** Custom step labels — reuse this component's visual language anywhere
+   * a connected-node/route motif fits (hero, a process band, etc). */
+  steps?: string[]
+  /** Which node renders as the larger "hub" node. */
+  hubIndex?: number
+}) {
+  const nodes = steps
   return (
     <div className={cn("w-full", className)}>
       <svg viewBox="0 0 400 24" className="w-full" aria-hidden="true">
@@ -17,7 +29,7 @@ export function NodeFlow({ className }: { className?: string }) {
         />
         {nodes.map((node, i) => {
           const x = 20 + i * (360 / (nodes.length - 1))
-          const isHub = i === 1
+          const isHub = i === hubIndex
           return (
             <circle
               key={node}
