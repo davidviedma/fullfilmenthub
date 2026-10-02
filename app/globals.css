@@ -71,3 +71,36 @@
     linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
   background-size: 48px 48px;
 }
+
+/* Editorial display scale — hero headline and section headlines. */
+.text-display-xl {
+  font-size: clamp(2.75rem, 7vw, 6.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+}
+
+.text-display-lg {
+  font-size: clamp(2.25rem, 4.2vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* Clear the sticky nav when scrolling to an in-page anchor, so the
+   target section's heading doesn't land underneath it. */
+section[id],
+footer[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Respect the OS-level motion preference everywhere, as a safety net on
+   top of any per-component check (Reveal, hero/dashboard motion, etc). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
