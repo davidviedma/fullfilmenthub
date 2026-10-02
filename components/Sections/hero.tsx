@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { NodeFlow } from "@/components/node-flow"
 import { IconArrowRight } from "@/components/icons"
 import { Reveal } from "@/components/ui/reveal"
+import { GridCoordinate } from "@/components/ui/grid-coordinate"
 
 const pillars = ["Reliability", "Visibility", "Speed", "Scalability"]
 
@@ -11,8 +12,8 @@ export function Hero() {
       <div className="bg-node-grid absolute inset-0" />
       <div className="absolute inset-0 bg-gradient-to-b from-navy/0 via-navy/10 to-navy" />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-16 px-6 py-24 lg:flex-row lg:items-center lg:py-32">
-        <div className="max-w-xl">
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-12 px-6 py-24 lg:flex-row lg:items-start lg:gap-24 lg:py-32">
+        <div className="max-w-2xl lg:flex-1">
           <Reveal>
             <span className="inline-flex items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium tracking-wide text-white/70 uppercase">
               Ecommerce fulfilment infrastructure
@@ -52,19 +53,37 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <Reveal delay={200} className="w-full max-w-md lg:ml-auto">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <p className="text-xs font-medium tracking-wide text-white/40 uppercase">
+        <Reveal
+          delay={200}
+          className="w-full max-w-sm lg:max-w-[300px] lg:shrink-0"
+        >
+          <div className="relative rounded-2xl bg-white/[0.04] p-5">
+            <div className="flex min-w-0 items-center justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-2">
+                <span className="relative flex size-2 shrink-0">
+                  <span className="absolute inset-0 rounded-full bg-hub-blue motion-reduce:hidden motion-safe:animate-ping" />
+                  <span className="relative size-2 rounded-full bg-hub-blue" />
+                </span>
+                <span className="truncate text-xs font-medium tracking-wide text-white/70 uppercase">
+                  Live tracking
+                </span>
+              </div>
+              <GridCoordinate value="A01" className="shrink-0 text-white" />
+            </div>
+
+            <p className="mt-5 text-xs font-medium tracking-wide text-white/40 uppercase">
               How an order moves through the hub
             </p>
-            <div className="mt-8">
+
+            <div className="mt-7">
               <NodeFlow />
             </div>
-            <ul className="mt-10 grid grid-cols-2 gap-4 border-t border-white/10 pt-6 text-sm text-white/70">
+
+            <ul className="mt-8 grid grid-cols-2 gap-3 border-t border-white/10 pt-5 text-sm text-white/70">
               {pillars.map((pillar) => (
-                <li key={pillar} className="flex items-center gap-2">
+                <li key={pillar} className="flex min-w-0 items-center gap-2">
                   <span className="size-1.5 shrink-0 rounded-full bg-hub-blue" />
-                  {pillar}
+                  <span className="truncate">{pillar}</span>
                 </li>
               ))}
             </ul>
