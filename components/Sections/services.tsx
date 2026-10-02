@@ -9,45 +9,50 @@ import {
 import { Container } from "@/components/ui/container"
 import { SectionLabel } from "@/components/ui/section-label"
 import { Reveal } from "@/components/ui/reveal"
+import { GridCoordinate } from "@/components/ui/grid-coordinate"
+import { NodeFlow } from "@/components/node-flow"
 
 const hubs = [
   {
-    code: "01",
+    coordinate: "A01",
     icon: IconStorage,
     name: "Hub Storage",
     description: "Warehousing & inventory management.",
   },
   {
-    code: "02",
+    coordinate: "A02",
     icon: IconPickPack,
     name: "Hub Fulfilment",
     description: "Pick, pack & dispatch.",
   },
   {
-    code: "03",
+    coordinate: "A03",
     icon: IconShipping,
     name: "Hub Shipping",
     description: "Domestic & international shipping.",
   },
   {
-    code: "04",
+    coordinate: "B01",
     icon: IconReturns,
     name: "Hub Returns",
     description: "Returns management.",
   },
   {
-    code: "05",
+    coordinate: "B02",
     icon: IconConnect,
     name: "Hub Connect",
     description: "Ecommerce & platform integrations.",
   },
-  {
-    code: "06",
-    icon: IconNetwork,
-    name: "Hub Network",
-    description: "A growing network of fulfilment centres.",
-  },
 ]
+
+const anchorHub = {
+  coordinate: "B03",
+  icon: IconNetwork,
+  name: "Hub Network",
+  description: "A growing network of fulfilment centres.",
+}
+
+const networkSteps = ["", "", "", "+ More"]
 
 const pillars = [
   {
@@ -86,14 +91,41 @@ export function Services() {
         </Reveal>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {hubs.map(({ code, icon: Icon, name, description }, index) => (
-            <Reveal key={code} delay={(index % 3) * 60}>
-              <div className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-6">
+          <Reveal className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
+            <div className="flex h-full flex-col justify-between gap-10 rounded-2xl bg-hub-blue/[0.08] p-7 sm:p-8 lg:p-10">
+              <div>
+                <div className="flex items-start justify-between gap-4">
+                  <anchorHub.icon className="size-8 text-hub-blue" />
+                  <GridCoordinate
+                    value={anchorHub.coordinate}
+                    className="shrink-0 text-white"
+                  />
+                </div>
+                <h3 className="mt-6 text-2xl font-semibold text-white sm:text-3xl">
+                  {anchorHub.name}
+                </h3>
+                <p className="mt-3 max-w-sm text-base text-white/70">
+                  {anchorHub.description}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-medium tracking-wide text-white/40 uppercase">
+                  Built to expand
+                </p>
+                <div className="mt-5">
+                  <NodeFlow steps={networkSteps} hubIndex={3} />
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {hubs.map(({ coordinate, icon: Icon, name, description }, index) => (
+            <Reveal key={name} delay={index * 60}>
+              <div className="h-full rounded-2xl bg-white/[0.03] p-6">
                 <div className="flex items-center justify-between">
                   <Icon className="size-6 text-hub-blue" />
-                  <span className="font-mono text-xs text-white/30">
-                    {code}
-                  </span>
+                  <GridCoordinate value={coordinate} className="text-white" />
                 </div>
                 <h3 className="mt-5 font-semibold">{name}</h3>
                 <p className="mt-1.5 text-sm text-white/60">{description}</p>
@@ -103,17 +135,22 @@ export function Services() {
         </div>
 
         <Reveal>
-          <div className="mt-20 grid gap-8 border-t border-white/10 pt-14 sm:grid-cols-2 lg:grid-cols-4">
-            {pillars.map((pillar) => (
-              <div key={pillar.name}>
-                <h4 className="text-sm font-semibold text-hub-blue">
-                  {pillar.name}
-                </h4>
-                <p className="mt-2 text-sm text-white/60">
-                  {pillar.description}
-                </p>
-              </div>
-            ))}
+          <div className="mt-20 border-t border-white/10 pt-10">
+            <div className="flex flex-col gap-8 sm:flex-row sm:gap-0 sm:divide-x sm:divide-white/10">
+              {pillars.map((pillar) => (
+                <div
+                  key={pillar.name}
+                  className="min-w-0 flex-1 sm:px-8 sm:first:pl-0 sm:last:pr-0"
+                >
+                  <h4 className="text-xs font-semibold tracking-[0.15em] text-hub-blue uppercase">
+                    {pillar.name}
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-white/55">
+                    {pillar.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
       </Container>

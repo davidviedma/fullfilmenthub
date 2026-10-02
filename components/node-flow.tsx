@@ -32,7 +32,7 @@ export function NodeFlow({
           const isHub = i === hubIndex
           return (
             <circle
-              key={node}
+              key={i}
               cx={x}
               cy="12"
               r={isHub ? 7 : 5}
@@ -44,8 +44,8 @@ export function NodeFlow({
         })}
       </svg>
       <div className="mt-3 flex justify-between text-xs text-white/50">
-        {nodes.map((node) => (
-          <span key={node}>{node}</span>
+        {nodes.map((node, i) => (
+          <span key={i}>{node}</span>
         ))}
       </div>
     </div>
