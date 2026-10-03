@@ -19,7 +19,7 @@ export function Hero() {
               Ecommerce fulfilment infrastructure
             </span>
 
-            <h1 className="mt-6 text-display-xl font-bold text-white">
+            <h1 className="text-display-xl mt-6 font-bold text-white">
               Fulfilment that keeps up with your growth.
             </h1>
 
@@ -61,7 +61,7 @@ export function Hero() {
             <div className="flex min-w-0 items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-2">
                 <span className="relative flex size-2 shrink-0">
-                  <span className="absolute inset-0 rounded-full bg-hub-blue motion-reduce:hidden motion-safe:animate-ping" />
+                  <span className="absolute inset-0 rounded-full bg-hub-blue motion-safe:animate-ping motion-reduce:hidden" />
                   <span className="relative size-2 rounded-full bg-hub-blue" />
                 </span>
                 <span className="truncate text-xs font-medium tracking-wide text-white/70 uppercase">

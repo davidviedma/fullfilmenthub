@@ -17,7 +17,11 @@ export function NodeFlow({
   const nodes = steps
   return (
     <div className={cn("w-full", className)}>
-      <svg viewBox="0 0 400 24" className="w-full" aria-hidden="true">
+      <svg
+        viewBox="0 0 400 24"
+        className="w-full overflow-visible"
+        aria-hidden="true"
+      >
         <line
           x1="20"
           y1="12"
@@ -25,21 +29,32 @@ export function NodeFlow({
           y2="12"
           stroke="#146EF5"
           strokeWidth="1.5"
-          strokeDasharray="2 6"
+          className="route-flow"
         />
         {nodes.map((node, i) => {
           const x = 20 + i * (360 / (nodes.length - 1))
           const isHub = i === hubIndex
           return (
-            <circle
-              key={i}
-              cx={x}
-              cy="12"
-              r={isHub ? 7 : 5}
-              fill={isHub ? "#146EF5" : "#071C33"}
-              stroke="#146EF5"
-              strokeWidth="1.5"
-            />
+            <g key={i}>
+              {isHub && (
+                <circle
+                  cx={x}
+                  cy="12"
+                  r="7"
+                  fill="#146EF5"
+                  opacity="0.35"
+                  className="motion-safe:animate-ping motion-reduce:hidden"
+                />
+              )}
+              <circle
+                cx={x}
+                cy="12"
+                r={isHub ? 7 : 5}
+                fill={isHub ? "#146EF5" : "#071C33"}
+                stroke="#146EF5"
+                strokeWidth="1.5"
+              />
+            </g>
           )
         })}
       </svg>

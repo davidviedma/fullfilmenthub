@@ -51,8 +51,11 @@ export function Reveal({
       ref={ref}
       className={cn(
         !skip &&
-          "transition-[opacity,transform] duration-700 ease-out will-change-transform",
-        !skip && (visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"),
+          "transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform",
+        !skip &&
+          (visible
+            ? "translate-y-0 opacity-100 blur-none"
+            : "translate-y-6 opacity-0 blur-sm"),
         className
       )}
       style={!skip && delay ? { transitionDelay: `${delay}ms` } : undefined}

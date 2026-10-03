@@ -72,6 +72,44 @@
   background-size: 48px 48px;
 }
 
+/* Flowing dash animation for route/connector lines (NodeFlow, converging
+   routes) — reads as data moving through the network rather than a static
+   diagram. Dash pattern (2 6) and offset (-8) share a length so the loop
+   is seamless. */
+.route-flow {
+  stroke-dasharray: 2 6;
+  animation: route-flow 1s linear infinite;
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+/* Slow-drifting ambient glow blobs (GlowOrb). */
+.animate-aurora {
+  animation: aurora-drift 12s ease-in-out infinite;
+}
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, -5%) scale(1.1);
+  }
+}
+
+/* Two-tone gradient headline accent. */
+.text-gradient-hub {
+  background-image: linear-gradient(90deg, #146ef5, #20c5e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 /* Editorial display scale — hero headline and section headlines. */
 .text-display-xl {
   font-size: clamp(2.75rem, 7vw, 6.5rem);

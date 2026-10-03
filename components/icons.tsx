@@ -158,13 +158,7 @@ export function IconConnect({ className }: IconProps) {
       aria-hidden="true"
     >
       <circle cx="5" cy="5" r="2.25" stroke="currentColor" strokeWidth="1.5" />
-      <circle
-        cx="19"
-        cy="5"
-        r="2.25"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
+      <circle cx="19" cy="5" r="2.25" stroke="currentColor" strokeWidth="1.5" />
       <circle
         cx="12"
         cy="19"
