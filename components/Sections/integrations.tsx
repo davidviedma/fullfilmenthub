@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/container"
 import { SectionLabel } from "@/components/ui/section-label"
 import { Reveal } from "@/components/ui/reveal"
 import { GridCoordinate } from "@/components/ui/grid-coordinate"
+import { GlowOrb } from "@/components/ui/glow-orb"
 import { IconConnect } from "@/components/icons"
 
 const platforms = [
@@ -45,8 +46,12 @@ export function Integrations() {
             dashed routes and land on the hub panel — composing the idea
             instead of six identical boxes. */}
         <Reveal delay={100}>
-          <div className="mt-14 flex flex-col overflow-hidden rounded-2xl bg-navy lg:flex-row">
-            <div className="min-w-0 flex-1 p-6 sm:p-8 lg:p-10">
+          <div className="relative mt-14 flex flex-col overflow-hidden rounded-2xl bg-navy lg:flex-row">
+            <GlowOrb
+              tone="cyan"
+              className="top-1/2 -right-20 size-72 -translate-y-1/2"
+            />
+            <div className="relative z-10 min-w-0 flex-1 p-6 sm:p-8 lg:p-10">
               <p className="text-xs font-medium tracking-wide text-white/40 uppercase">
                 Your sales channels
               </p>
@@ -70,7 +75,7 @@ export function Integrations() {
                         y2={convergeY}
                         stroke="#146EF5"
                         strokeWidth="1.25"
-                        strokeDasharray="2 6"
+                        className="route-flow"
                         strokeLinecap="round"
                         opacity="0.7"
                       />
@@ -83,6 +88,7 @@ export function Integrations() {
                       stroke="#146EF5"
                       strokeWidth="2.5"
                       strokeLinecap="round"
+                      className="motion-safe:animate-pulse motion-reduce:opacity-100"
                     />
                     {nodes.map((node) => (
                       <circle
@@ -117,7 +123,7 @@ export function Integrations() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 border-t border-white/10 bg-hub-blue/[0.08] p-6 sm:p-8 lg:w-64 lg:flex-col lg:justify-center lg:border-t-0 lg:border-l lg:p-10 lg:text-center">
+            <div className="relative z-10 flex items-center gap-4 border-t border-white/10 bg-hub-blue/[0.08] p-6 sm:p-8 lg:w-64 lg:flex-col lg:justify-center lg:border-t-0 lg:border-l lg:p-10 lg:text-center">
               <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-hub-blue/[0.15] text-hub-blue">
                 <IconConnect className="size-6" />
               </div>

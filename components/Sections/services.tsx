@@ -11,6 +11,7 @@ import { SectionLabel } from "@/components/ui/section-label"
 import { Reveal } from "@/components/ui/reveal"
 import { GridCoordinate } from "@/components/ui/grid-coordinate"
 import { NodeFlow } from "@/components/node-flow"
+import { GlowOrb } from "@/components/ui/glow-orb"
 
 const hubs = [
   {
@@ -92,29 +93,32 @@ export function Services() {
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Reveal className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
-            <div className="flex h-full flex-col justify-between gap-10 rounded-2xl bg-hub-blue/[0.08] p-7 sm:p-8 lg:p-10">
-              <div>
-                <div className="flex items-start justify-between gap-4">
-                  <anchorHub.icon className="size-8 text-hub-blue" />
-                  <GridCoordinate
-                    value={anchorHub.coordinate}
-                    className="shrink-0 text-white"
-                  />
+            <div className="relative h-full overflow-hidden rounded-2xl bg-hub-blue/[0.08] shadow-[0_0_60px_-20px_rgba(20,110,245,0.35)]">
+              <GlowOrb tone="blue" className="-right-16 -bottom-16 size-72" />
+              <div className="relative z-10 flex h-full flex-col justify-between gap-10 p-7 sm:p-8 lg:p-10">
+                <div>
+                  <div className="flex items-start justify-between gap-4">
+                    <anchorHub.icon className="size-8 text-hub-blue" />
+                    <GridCoordinate
+                      value={anchorHub.coordinate}
+                      className="shrink-0 text-white"
+                    />
+                  </div>
+                  <h3 className="mt-6 text-2xl font-semibold text-white sm:text-3xl">
+                    {anchorHub.name}
+                  </h3>
+                  <p className="mt-3 max-w-sm text-base text-white/70">
+                    {anchorHub.description}
+                  </p>
                 </div>
-                <h3 className="mt-6 text-2xl font-semibold text-white sm:text-3xl">
-                  {anchorHub.name}
-                </h3>
-                <p className="mt-3 max-w-sm text-base text-white/70">
-                  {anchorHub.description}
-                </p>
-              </div>
 
-              <div>
-                <p className="text-xs font-medium tracking-wide text-white/40 uppercase">
-                  Built to expand
-                </p>
-                <div className="mt-5">
-                  <NodeFlow steps={networkSteps} hubIndex={3} />
+                <div>
+                  <p className="text-xs font-medium tracking-wide text-white/40 uppercase">
+                    Built to expand
+                  </p>
+                  <div className="mt-5">
+                    <NodeFlow steps={networkSteps} hubIndex={3} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,7 +126,7 @@ export function Services() {
 
           {hubs.map(({ coordinate, icon: Icon, name, description }, index) => (
             <Reveal key={name} delay={index * 60}>
-              <div className="h-full rounded-2xl bg-white/[0.03] p-6">
+              <div className="h-full rounded-2xl bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06] hover:shadow-[0_0_24px_-8px_rgba(20,110,245,0.4)]">
                 <div className="flex items-center justify-between">
                   <Icon className="size-6 text-hub-blue" />
                   <GridCoordinate value={coordinate} className="text-white" />

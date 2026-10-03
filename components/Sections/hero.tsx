@@ -1,18 +1,49 @@
+"use client"
+
+import { useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { NodeFlow } from "@/components/node-flow"
 import { IconArrowRight } from "@/components/icons"
 import { Reveal } from "@/components/ui/reveal"
 import { GridCoordinate } from "@/components/ui/grid-coordinate"
+import { GlowOrb } from "@/components/ui/glow-orb"
 
 const pillars = ["Reliability", "Visibility", "Speed", "Scalability"]
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
+    const node = sectionRef.current
+    if (!node) return
+    const rect = node.getBoundingClientRect()
+    const mx = ((event.clientX - rect.left) / rect.width) * 100
+    const my = ((event.clientY - rect.top) / rect.height) * 100
+    node.style.setProperty("--mx", `${mx}%`)
+    node.style.setProperty("--my", `${my}%`)
+  }
+
   return (
-    <section className="relative overflow-hidden bg-navy">
+    <section
+      ref={sectionRef}
+      onPointerMove={handlePointerMove}
+      className="relative overflow-hidden bg-navy"
+    >
       <div className="bg-node-grid absolute inset-0" />
       <div className="absolute inset-0 bg-gradient-to-b from-navy/0 via-navy/10 to-navy" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(600px circle at var(--mx, 50%) var(--my, 30%), rgba(20,110,245,0.18), transparent 60%)",
+        }}
+      />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-12 px-6 py-24 lg:flex-row lg:items-start lg:gap-24 lg:py-32">
+      <GlowOrb tone="blue" className="-top-32 -right-24 size-96" />
+      <GlowOrb tone="cyan" className="bottom-0 left-0 size-72" />
+
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-12 px-6 py-24 lg:flex-row lg:items-start lg:gap-24 lg:py-32">
         <div className="max-w-2xl lg:flex-1">
           <Reveal>
             <span className="inline-flex items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium tracking-wide text-white/70 uppercase">
@@ -20,7 +51,8 @@ export function Hero() {
             </span>
 
             <h1 className="text-display-xl mt-6 font-bold text-white">
-              Fulfilment that keeps up with your growth.
+              Fulfilment that keeps up with your{" "}
+              <span className="text-gradient-hub">growth</span>.
             </h1>
 
             <p className="mt-6 text-lg text-white/70">
@@ -57,7 +89,7 @@ export function Hero() {
           delay={200}
           className="w-full max-w-sm lg:max-w-[300px] lg:shrink-0"
         >
-          <div className="relative rounded-2xl bg-white/[0.04] p-5">
+          <div className="relative rounded-2xl border border-hub-blue/20 bg-white/[0.04] p-5 shadow-[0_0_50px_-12px_rgba(20,110,245,0.45)]">
             <div className="flex min-w-0 items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-2">
                 <span className="relative flex size-2 shrink-0">

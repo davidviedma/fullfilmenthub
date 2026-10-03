@@ -21,6 +21,10 @@ const companyLinks = [
 export function Footer() {
   return (
     <footer className="bg-navy text-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none h-px w-full bg-[linear-gradient(90deg,transparent,rgba(20,110,245,0.4),rgba(32,197,232,0.4),transparent)]"
+      />
       <Container className="py-16">
         <Reveal>
           <div className="flex flex-col gap-12 sm:flex-row sm:justify-between">

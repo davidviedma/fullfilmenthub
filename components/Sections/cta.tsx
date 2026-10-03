@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { SectionLabel } from "@/components/ui/section-label"
 import { Reveal } from "@/components/ui/reveal"
+import { GlowOrb } from "@/components/ui/glow-orb"
 
 const pillars = ["Reliability", "Visibility", "Speed", "Scalability"]
 
@@ -11,14 +12,17 @@ export function Cta() {
       id="contact"
       className="relative overflow-hidden bg-navy py-24 text-white"
     >
+      <GlowOrb tone="blue" className="-top-32 -left-24 size-96" />
+      <GlowOrb tone="cyan" className="-right-20 -bottom-24 size-72" />
       <div className="bg-node-grid absolute inset-0 opacity-50" />
-      <Container className="relative max-w-4xl text-center">
+      <Container className="relative z-10 max-w-4xl text-center">
         <Reveal>
           <SectionLabel tone="secondary">
             Ready to scale your fulfilment?
           </SectionLabel>
           <h2 className="text-display-lg mt-4 font-bold">
-            Your logistics shouldn&apos;t limit your growth.
+            Your logistics shouldn&apos;t{" "}
+            <span className="text-gradient-hub">limit your growth</span>.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-white/70">
             Tell us about your order volume and current setup. We&apos;ll show

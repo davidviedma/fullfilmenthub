@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { Container } from "@/components/ui/container"
 import { SectionLabel } from "@/components/ui/section-label"
 import { Reveal } from "@/components/ui/reveal"
+import { AnimatedCounter } from "@/components/ui/animated-counter"
 
 const metrics = [
   { label: "Orders today", value: "1,248" },
@@ -70,6 +71,7 @@ function DispatchSlaChart() {
         stroke="#146EF5"
         strokeWidth="2"
         className={cn(
+          "[filter:drop-shadow(0_0_4px_rgba(20,110,245,0.5))]",
           ready && "transition-[stroke-dashoffset] duration-500 ease-out"
         )}
         style={
@@ -103,7 +105,7 @@ export function Visibility() {
         </Reveal>
 
         <Reveal delay={120} className="mt-14">
-          <div className="overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-xl shadow-navy/5">
+          <div className="overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-[0_0_70px_-25px_rgba(20,110,245,0.3),0_20px_25px_-5px_rgba(7,28,51,0.05),0_8px_10px_-6px_rgba(7,28,51,0.05)]">
             <div className="flex min-w-0 items-center gap-2 border-b border-navy/10 bg-white px-6 py-3">
               <div
                 className="flex shrink-0 items-center gap-1.5"
@@ -139,7 +141,7 @@ export function Visibility() {
                       <div className="rounded-xl border border-navy/10 p-4">
                         <p className="text-xs text-steel">{metric.label}</p>
                         <p className="mt-1 text-2xl font-bold text-navy">
-                          {metric.value}
+                          <AnimatedCounter value={metric.value} />
                         </p>
                       </div>
                     </Reveal>
